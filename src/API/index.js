@@ -6,7 +6,7 @@ const instance = Axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    const authToken = ""
+    const authToken = '';
     if (authToken) {
       config.headers.Authorization = `Token ${authToken}`;
     }
