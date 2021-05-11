@@ -1,46 +1,57 @@
 $sides: (
-  'top': 't',
-  'right': 'r',
-  'bottom': 'b',
-  'left': 'l',
+        'top': 't',
+        'right': 'r',
+        'bottom': 'b',
+        'left': 'l',
+);
+
+$XYSides: (
+        'x': 'x',
+        'y': 'y',
 );
 
 @each $side, $letter in $sides {
-  @for $px from 0 through 10 {
-    .m#{$letter}-#{$px * 5} {
-      margin-#{$side}: #{$px * 5}px !important;
+  @for $px from 0 through 100 {
+    .m#{$letter}-#{$px} {
+      margin-#{$side}: #{$px}px;
     }
-
-    .p#{$letter}-#{$px * 5} {
-      padding-#{$side}: #{$px * 5}px !important;
+    .p#{$letter}-#{$px} {
+      padding-#{$side}: #{$px}px;
     }
   }
 }
 
-.p-30 {
-  padding: var(--spacing--30);
+@each $side, $letter in $XYSides {
+  @for $px from 0 through 100 {
+    @if $letter == x {
+      .m#{$letter}-#{$px} {
+        margin: 0 #{$px}px;
+      }
+    }
+    @if $letter == y {
+      .m#{$letter}-#{$px} {
+        margin: #{$px}px 0;
+      }
+    }
+    @if $letter == x {
+      .p#{$letter}-#{$px} {
+        padding: 0 #{$px}px;
+      }
+    }
+    @if $letter == y {
+      .p#{$letter}-#{$px} {
+        padding: #{$px}px 0;
+      }
+    }
+  }
 }
 
-.p-20 {
-  padding: var(--spacing--20);
+@for $px from 0 through 100 {
+  .m-#{$px} {
+    margin: #{$px}px;
+  }
+  .p-#{$px} {
+    padding: #{$px}px;
+  }
 }
 
-.pv-40 {
-  padding: 0 var(--spacing--40);
-}
-
-.p-30 {
-  padding: var(--spacing--30);
-}
-
-.pv-30 {
-  padding: 0 var(--spacing--30);
-}
-
-.ph-40 {
-  padding: var(--spacing--40) 0;
-}
-
-.pb-20 {
-  padding-bottom: var(--spacing--20);
-}
